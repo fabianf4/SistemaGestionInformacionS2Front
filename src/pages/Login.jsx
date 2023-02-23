@@ -1,10 +1,13 @@
 import { useState } from "react"
 import "../styles/login.css"
 import connectionApi from "../configuration/axiosConfiguration"
+import { Form, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -20,6 +23,10 @@ export default function Login() {
             })
             .then((response) => {
                 alert(response.data.message)
+                if (response.data.success) {
+                    localStorage.setItem("token", response.data.data.token)
+                    navigate("/profile")
+                }
                 console.log(response.data)
             })
             .catch((error) => {
@@ -30,31 +37,23 @@ export default function Login() {
     return (
         <>
             <div className="container">
-                <form className="form" onSubmit={handleSubmit}>
-                    <h2 className="form__title">Autenticarse</h2>
-                    <label htmlFor="email" className="form__label">
-                        Email:
-                    </label>
-                    <input
+                <Form onSubmit={handleSubmit}>
+                    <h2>Autenticarse</h2>
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
                         type="email"
-                        id="email"
-                        className="form__input"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <label htmlFor="password" className="form__label">
-                        Contraseña:
-                    </label>
-                    <input
+                    <Form.Label>Contraseña:</Form.Label>
+                    <Form.Control
                         type="password"
-                        id="password"
-                        className="form__input"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button className="form__button">Iniciar sesion</button>
-                </form>
+                    <Button type="submit">Iniciar sesion</Button>
+                </Form>
             </div>
         </>
     )
