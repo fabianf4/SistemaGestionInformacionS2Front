@@ -14,33 +14,26 @@ export default function Profile() {
                 }
             })
             .then((response) => {
-                console.log(response.data.data)
                 setUser(response.data.data.user)
             })
             .catch((error) => {
                 console.log(error)
-                if (error.response.status === 401) {
-                    navigate("/")
-                    alert("No tienes permiso para ver este contenido")
-                }
             })
     }, [])
 
     return (
         <>
-            <div className="container">
-                <h1>Perfil</h1>
-                <h5>Nombre(s):</h5>
-                {user?.name}
-                <h5>Apellido(s):</h5>
-                {user?.lastname}
-                <h5>Documento:</h5>
-                {user?.document}
-                <h5>Correo:</h5>
-                {user?.email}
-                <h5>Contraseña:</h5>
-                {user?.password ? "Si" : "No"}
-            </div>
+            <h1>Perfil</h1>
+            <h5>Nombre(s):</h5>
+            {user?.name}
+            <h5>Apellido(s):</h5>
+            {user?.lastname}
+            <h5>Documento:</h5>
+            {user?.document}
+            <h5>Correo:</h5>
+            {user?.email}
+            <h5>Contraseña:</h5>
+            {user?.password ? "Si" : "No"}
         </>
     )
 }
