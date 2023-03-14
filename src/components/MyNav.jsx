@@ -24,7 +24,6 @@ export default function MyNav() {
                 <NavDropdown title="Bautismo">
                     <NavDropdown.Item as={NavLink} to="/baptismal/create">Crear</NavDropdown.Item>
                     <NavDropdown.Item as={NavLink} to="/baptismal/find">Buscar</NavDropdown.Item>
-                    <NavDropdown.Item as={NavLink} to="/baptismal/update">Actualizar</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
         </>

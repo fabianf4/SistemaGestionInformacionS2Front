@@ -4,7 +4,7 @@ import connectionApi from "../../configuration/axiosConfiguration"
 import { useNavigate } from "react-router-dom"
 
 let token = null
-export default function BaptismalUpdate({data}) {
+export default function BaptismalUpdate({ data , setEdit}) {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -29,9 +29,8 @@ export default function BaptismalUpdate({data}) {
     })
 
     useEffect(() => {
-      setFormData(data)
+        setFormData((prevState) => Object.assign({}, prevState, data))
     }, [])
-    
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -40,15 +39,15 @@ export default function BaptismalUpdate({data}) {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(token)
         connectionApi
-            .post("baptism/updateBaptism", formData, {
+            .put("baptism/updateBaptism", formData, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
             .then((response) => {
                 console.log(response)
+                setEdit(false)
             })
             .catch((error) => {
                 console.log(error)
@@ -57,13 +56,16 @@ export default function BaptismalUpdate({data}) {
 
     return (
         <Form onSubmit={handleSubmit}>
+            <h2>Actualizar</h2>
             <Form.Group controlId="book">
                 <Form.Label>Libro</Form.Label>
                 <Form.Control
                     type="number"
                     name="book"
                     onChange={handleChange}
+                    value={formData.book}
                     required
+                    disabled
                 />
             </Form.Group>
 
@@ -73,7 +75,9 @@ export default function BaptismalUpdate({data}) {
                     type="number"
                     name="invoice"
                     onChange={handleChange}
+                    value={formData.invoice}
                     required
+                    disabled
                 />
             </Form.Group>
 
@@ -83,7 +87,9 @@ export default function BaptismalUpdate({data}) {
                     type="number"
                     name="number"
                     onChange={handleChange}
+                    value={formData.number}
                     required
+                    disabled
                 />
             </Form.Group>
 
@@ -93,6 +99,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="name"
                     onChange={handleChange}
+                    value={formData.name}
                     required
                 />
             </Form.Group>
@@ -103,6 +110,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="lastname"
                     onChange={handleChange}
+                    value={formData.lastname}
                     required
                 />
             </Form.Group>
@@ -113,6 +121,7 @@ export default function BaptismalUpdate({data}) {
                     type="date"
                     name="birthdate"
                     onChange={handleChange}
+                    value={formData.birthdate}
                     required
                 />
             </Form.Group>
@@ -123,6 +132,7 @@ export default function BaptismalUpdate({data}) {
                     type="date"
                     name="baptismDate"
                     onChange={handleChange}
+                    value={formData.baptismDate}
                     required
                 />
             </Form.Group>
@@ -133,6 +143,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="fatherName"
                     onChange={handleChange}
+                    value={formData.fatherName}
                     required
                 />
             </Form.Group>
@@ -143,6 +154,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="motherName"
                     onChange={handleChange}
+                    value={formData.motherName}
                     required
                 />
             </Form.Group>
@@ -153,6 +165,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="maternalGrandfather"
                     onChange={handleChange}
+                    value={formData.maternalGrandfather}
                     required
                 />
             </Form.Group>
@@ -163,6 +176,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="maternalGrandmother"
                     onChange={handleChange}
+                    value={formData.maternalGrandmother}
                     required
                 />
             </Form.Group>
@@ -173,6 +187,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="paternalGrandfather"
                     onChange={handleChange}
+                    value={formData.paternalGrandfather}
                     required
                 />
             </Form.Group>
@@ -182,6 +197,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="paternalGrandmother"
                     onChange={handleChange}
+                    value={formData.paternalGrandmother}
                     required
                 />
             </Form.Group>
@@ -192,6 +208,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="godfather"
                     onChange={handleChange}
+                    value={formData.godfather}
                     required
                 />
             </Form.Group>
@@ -202,6 +219,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="godmother"
                     onChange={handleChange}
+                    value={formData.godmother}
                     required
                 />
             </Form.Group>
@@ -212,6 +230,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="minister"
                     onChange={handleChange}
+                    value={formData.minister}
                     required
                 />
             </Form.Group>
@@ -222,6 +241,7 @@ export default function BaptismalUpdate({data}) {
                     type="text"
                     name="parson"
                     onChange={handleChange}
+                    value={formData.parson}
                     required
                 />
             </Form.Group>
@@ -233,6 +253,7 @@ export default function BaptismalUpdate({data}) {
                     rows={3}
                     name="annotations"
                     onChange={handleChange}
+                    value={formData.annotations}
                     required
                 />
             </Form.Group>

@@ -25,7 +25,7 @@ const Router = createHashRouter([
             },
             {
                 path: "/profile",
-                element: <PrivateRoute component={Profile}/>
+                element: <PrivateRoute component={Profile} />
             },
             {
                 path: "/baptismal/create",
@@ -34,10 +34,6 @@ const Router = createHashRouter([
             {
                 path: "/baptismal/find",
                 element: <PrivateRoute component={BaptismalFinf} />
-            },
-            {
-                path: "/baptismal/update/",
-                element: <PrivateRoute component={BaptismalUpdate} />
             }
         ]
     }
