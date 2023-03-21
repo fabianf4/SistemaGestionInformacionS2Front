@@ -1,7 +1,14 @@
 import { Button } from "react-bootstrap"
 import connectionApi from "../configuration/axiosConfiguration"
+import Swal from "sweetalert2"
 
-export default function ButtonDelete({ url, book, invoice, number }) {
+export default function ButtonDelete({
+    url,
+    book,
+    invoice,
+    number,
+    setReload
+}) {
     const handleClick = () => {
         connectionApi
             .delete(url, {
@@ -15,11 +22,23 @@ export default function ButtonDelete({ url, book, invoice, number }) {
                 }
             })
             .then((response) => {
-                console.log(response)
-                alert(response.data.message)
+                if (response.data.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Acta eliminada",
+                        text: response.data.message
+                    })
+                    setReload(true)
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: response.data?.message,
+                        text: response.data?.data?.errors
+                    })
+                }
             })
             .catch((error) => {
-                console.log(error)
+                console.error(error)
             })
     }
 

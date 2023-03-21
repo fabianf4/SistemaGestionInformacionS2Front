@@ -6,8 +6,7 @@ import Index from "./pages/Index"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import BaptismalCreate from "./pages/baptismal/Create"
-import BaptismalFinf from "./pages/baptismal/Find"
-import BaptismalUpdate from "./pages/baptismal/Update"
+import BaptismalFind from "./pages/baptismal/Find"
 
 const Router = createHashRouter([
     {
@@ -25,15 +24,15 @@ const Router = createHashRouter([
             },
             {
                 path: "/profile",
-                element: <PrivateRoute component={Profile} />
+                element: <PrivateRoute component={Profile} role={["USER","ADMIN"]}/>
             },
             {
                 path: "/baptismal/create",
-                element: <PrivateRoute component={BaptismalCreate} />
+                element: <PrivateRoute component={BaptismalCreate} role={["ADMIN"]}/>
             },
             {
                 path: "/baptismal/find",
-                element: <PrivateRoute component={BaptismalFinf} />
+                element: <PrivateRoute component={BaptismalFind} role={["ADMIN"]}/>
             }
         ]
     }

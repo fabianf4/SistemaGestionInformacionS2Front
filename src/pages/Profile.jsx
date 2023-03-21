@@ -1,10 +1,8 @@
 import connectionApi from "../configuration/axiosConfiguration"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 export default function Profile() {
     const [user, setUser] = useState()
-    const navigate = useNavigate()
 
     useEffect(() => {
         connectionApi
@@ -17,7 +15,7 @@ export default function Profile() {
                 setUser(response.data.data.user)
             })
             .catch((error) => {
-                console.log(error)
+                console.error(error)
             })
     }, [])
 
