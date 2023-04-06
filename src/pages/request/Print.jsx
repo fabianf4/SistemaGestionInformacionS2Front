@@ -85,7 +85,7 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                         </div>
                     </>
                 ) : (
-                    none
+                    <></>
                 )}
 
                 {type == "CONFIRMACION" ? (
@@ -93,7 +93,7 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                         <div className="cer_body"></div>
                     </>
                 ) : (
-                    none
+                    <></>
                 )}
 
                 {type == "MATRIMONIO" ? (
@@ -101,7 +101,7 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                         <div className="cer_body"></div>
                     </>
                 ) : (
-                    none
+                    <></>
                 )}
 
                 <div className="cer_date">
