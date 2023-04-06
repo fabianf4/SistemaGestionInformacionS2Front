@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap"
-import escudoDiocesis from "../../../public/escudoDiocesis.jpeg"
+import escudoDiocesis from "../../images/escudoDiocesis.jpeg"
 import { useState, useEffect } from "react"
 import "./print.css"
 

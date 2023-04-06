@@ -8,10 +8,16 @@ export default function MyNav() {
 
     return (
         <>
+            {console.log({user})}
             <Nav variant="tabs" activeKey="1" onSelect={true}>
                 <Nav.Item>
                     <Nav.Link as={NavLink} to="/">
                         Inicio
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link as={NavLink} to="/register">
+                        Registrarse
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
