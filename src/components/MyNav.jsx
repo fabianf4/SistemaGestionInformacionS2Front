@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom"
 import { Nav, NavDropdown } from "react-bootstrap"
-import { decodeToken } from "react-jwt"
 import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 
@@ -33,6 +32,28 @@ export default function MyNav() {
                         <NavDropdown.Item as={NavLink} to="/baptismal/find">
                             Buscar
                         </NavDropdown.Item>
+                    </NavDropdown>
+                ) : (
+                    <></>
+                )}
+                {user?.role == "USER" || user?.role == "ADMIN" ? (
+                    <NavDropdown title="Solicitud">
+                        <NavDropdown.Item
+                            as={NavLink}
+                            to="/request/createRequest"
+                        >
+                            Crear
+                        </NavDropdown.Item>
+                        {user?.role == "ADMIN" ? (
+                            <NavDropdown.Item
+                                as={NavLink}
+                                to="/request/getRequestsForDay"
+                            >
+                                Buscar por fecha
+                            </NavDropdown.Item>
+                        ) : (
+                            <></>
+                        )}
                     </NavDropdown>
                 ) : (
                     <></>

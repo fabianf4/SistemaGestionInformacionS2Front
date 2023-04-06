@@ -58,7 +58,6 @@ export default function BaptismalUpdate({ data, setEdit, setReload }) {
                         text: response.data?.data?.errors
                     })
                 }
-
             })
             .catch((error) => {
                 console.error(error)
