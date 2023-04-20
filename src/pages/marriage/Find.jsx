@@ -136,7 +136,7 @@ export default function marriageFind() {
                                                 </div>
                                                 <div>
                                                     <b>Apellido(s) esposo: </b>
-                                                    {item.lastname}
+                                                    {item.lastnamehusband}
                                                 </div>
                                                 <div>
                                                     <b>Fecha de matrimonio: </b>
