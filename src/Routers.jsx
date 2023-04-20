@@ -13,6 +13,7 @@ import ConfirmationCreate from "./pages/confirmation/Create"
 import ConfirmationFind from "./pages/confirmation/find"
 
 import marriageCreate from "./pages/marriage/Create"
+import marriageFind from "./pages/marriage/Find"
 
 import RequestCreate from "./pages/request/Create"
 import RequestFindForDate from "./pages/request/FindForDate"
@@ -63,12 +64,11 @@ const Router = createHashRouter([
                 path: "/marriage/create",
                 element: <PrivateRoute component={marriageCreate} role={["ADMIN"]}/>
             },
-            /*
             {
                 path: "/marriage/find",
                 element: <PrivateRoute component={marriageFind} role={["ADMIN"]}/>
             },
-            */
+            
             {
                 path: "/request/createRequest",
                 element: <PrivateRoute component={RequestCreate} role={["USER","ADMIN"]}/>

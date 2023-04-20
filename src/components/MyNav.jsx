@@ -60,6 +60,9 @@ export default function MyNav() {
                         <NavDropdown.Item as={NavLink} to="/marriage/create">
                             Crear
                         </NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/marriage/find">
+                            Buscar
+                        </NavDropdown.Item>
                         
                     </NavDropdown>
                 ) : (
