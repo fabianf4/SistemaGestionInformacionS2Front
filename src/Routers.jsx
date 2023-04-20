@@ -8,8 +8,13 @@ import Register from "./pages/Register"
 import Profile from "./pages/Profile"
 import BaptismalCreate from "./pages/baptismal/Create"
 import BaptismalFind from "./pages/baptismal/Find"
+
+import ConfirmationCreate from "./pages/confirmation/Create"
+import ConfirmationFind from "./pages/confirmation/find"
+
 import RequestCreate from "./pages/request/Create"
 import RequestFindForDate from "./pages/request/FindForDate"
+
 
 const Router = createHashRouter([
     {
@@ -41,6 +46,17 @@ const Router = createHashRouter([
                 path: "/baptismal/find",
                 element: <PrivateRoute component={BaptismalFind} role={["ADMIN"]}/>
             },
+
+            {
+                path: "/confirmation/create",
+                element: <PrivateRoute component={ConfirmationCreate} role={["ADMIN"]}/>
+            },
+
+            {
+                path: "/confirmation/find",
+                element: <PrivateRoute component={ConfirmationFind} role={["ADMIN"]}/>
+            },
+
             {
                 path: "/request/createRequest",
                 element: <PrivateRoute component={RequestCreate} role={["USER","ADMIN"]}/>

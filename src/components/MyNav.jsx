@@ -42,6 +42,20 @@ export default function MyNav() {
                 ) : (
                     <></>
                 )}
+
+                {user?.role == "ADMIN" ? (
+                    <NavDropdown title="Confirmacion">
+                        <NavDropdown.Item as={NavLink} to="/confirmation/create">
+                            Crear
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/confirmation/find">
+                            Buscar
+                        </NavDropdown.Item>
+                    </NavDropdown>
+                ) : (
+                    <></>
+                )}    
+
                 {user?.role == "USER" || user?.role == "ADMIN" ? (
                     <NavDropdown title="Solicitud">
                         <NavDropdown.Item
