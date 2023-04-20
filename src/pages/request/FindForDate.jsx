@@ -29,7 +29,6 @@ export default function requestFindForDate() {
             )
             .then((response) => {
                 if (response.data.success) {
-                    console.log(response.data)
                     setData(response.data.data.find)
                 } else {
                     setData([])
