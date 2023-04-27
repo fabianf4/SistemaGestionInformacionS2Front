@@ -5,6 +5,7 @@ import "./print.css"
 
 
 export default function RequestPrint({ certificate, type, windowPrint }) {
+    console.log({certificate})
     const [date, setDate] = useState("")
     const [parroco, setParroco] = useState("")
 
@@ -138,7 +139,45 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
 
                 {type == "MATRIMONIO" ? (
                     <>
-                        <div className="cer_body"></div>
+                        <div className="cer_body">
+                        <span>Nombres y apellidos: </span>
+                            {certificate.name + " " + certificate.lastname}{" "}
+                            <br />
+                            <span>Fecha de nacimiento:</span>{" "}
+                            {certificate.birthdate} 
+                            <br />
+                            <span>Fecha de bautismo: </span>
+                            {certificate.baptismDate} 
+                            <br />
+                            <span>Nombre de los padres:</span>{" "}
+                            {certificate.fatherName +
+                                " y " +
+                                certificate.motherName}{" "}
+                            <br />
+                            <span>Abuelos paternos:</span>{" "}
+                            {certificate.paternalGrandfather +
+                                " y " +
+                                certificate.paternalGrandmother}{" "}
+                            <br />
+                            <span>Abuelos maternos:</span>{" "}
+                            {certificate.maternalGrandfather +
+                                " y " +
+                                certificate.maternalGrandmother}{" "}
+                            <br />
+                            <span>Padrinos:</span>{" "}
+                            {certificate.godfather +
+                                " y " +
+                                certificate.godmother}{" "}
+                            <br />
+                            <span>Ministro: </span>
+                            {certificate.minister} 
+                            <br />
+                            <span> Parroco: </span>
+                            {certificate.parson} 
+                            <br /> <br />
+                            <span> ANOTACIONES: </span>
+                            {certificate.annotations}
+                        </div>
                     </>
                 ) : (
                     <></>
