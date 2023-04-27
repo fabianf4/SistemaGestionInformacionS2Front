@@ -10,7 +10,7 @@ import BaptismalCreate from "./pages/baptismal/Create"
 import BaptismalFind from "./pages/baptismal/Find"
 
 import ConfirmationCreate from "./pages/confirmation/Create"
-import ConfirmationFind from "./pages/confirmation/find"
+import ConfirmationFind from "./pages/confirmation/Find"
 
 import marriageCreate from "./pages/marriage/Create"
 import marriageFind from "./pages/marriage/Find"
