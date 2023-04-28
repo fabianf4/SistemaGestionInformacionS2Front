@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import "./print.css"
 
 export default function RequestPrint({ certificate, type, windowPrint }) {
-
     const [date, setDate] = useState("")
     const [parroco, setParroco] = useState("")
 
@@ -132,42 +131,7 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
 
                 {type == "MATRIMONIO" ? (
                     <>
-                        <div className="cer_body">
-                            <span>Fecha del matrimonio: </span>
-                            {certificate.marrierdate} <br />
-                            <span>Nombres y apellidos del esposo: </span>
-                            {certificate.namehusband + " " + certificate.lastnamehusband}{" "}
-                            <br />
-                            <span>Padre del esposo: </span>
-                            {certificate.fatherhusband} <br />
-                            <span>Madre del esposo: </span>
-                            {certificate.motherhusband} <br />
-                            <span>Lugar de bautismo del esposo: </span>
-                            {certificate.placebatptismhusband} <br />
-                            <span>Fecha de bautismo del esposo: </span>
-                            {certificate.datebatptismhusband}
-                            <br />
-
-                            <span>Nombres y apellidos de la esposa: </span>
-                            {certificate.motherwife + " " +certificate.lastnamewife} <br />
-                            <span>Padre de la esposa: </span>
-                            {certificate.fatherwife} <br />
-                            <span>Madre de la esposa: </span>
-                            {certificate.motherwife} <br />
-                            <span>Lugar de bautismo de la esposa: </span>
-                            {certificate.placebatptismwife} <br />
-                            <span>Fecha de bautismo de la esposa: </span>
-                            {certificate.datebatptismwife}
-                            <br />
-                            <span>Testigo(s): </span>
-                            {certificate.namewitness} <br />
-                            <span>Ministro: </span>
-                            {certificate.minister} <br />
-                            <span> Parroco: </span>
-                            {certificate.parson} <br /> <br />
-                            <span> ANOTACIONES: </span>
-                            {certificate.annotations}
-                        </div>
+                        <div className="cer_body"></div>
                     </>
                 ) : (
                     <></>
