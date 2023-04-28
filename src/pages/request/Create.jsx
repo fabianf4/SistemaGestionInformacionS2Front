@@ -14,7 +14,14 @@ export default function RequestCreate() {
         birthdate: "",
         fatherName: "",
         motherName: "",
-        godfather: ""
+        godfather: "",
+        namehusband: "",
+        lastnamehusband: "",
+        namewife: "",
+        lastnamewife: "",
+        marrierdate: "",
+        motherwife: "",
+        motherhusband: ""
     })
 
     const handleChange = (event) => {
@@ -66,69 +73,157 @@ export default function RequestCreate() {
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group controlId="name" className="col-md-4">
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+            {formData.type != "MATRIMONIO" ? (
+                <>
+                    <Form.Group controlId="name" className="col-md-4">
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="name"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="lastname" className="col-md-4">
-                <Form.Label>Apellido</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="lastname"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="lastname" className="col-md-4">
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="lastname"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="birthdate" className="col-md-4">
-                <Form.Label>Fecha de nacimiento</Form.Label>
-                <Form.Control
-                    type="date"
-                    name="birthdate"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="birthdate" className="col-md-4">
+                        <Form.Label>Fecha de nacimiento</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="birthdate"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="fatherName" className="col-md-4">
-                <Form.Label>Nombre del padre</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="fatherName"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="fatherName" className="col-md-4">
+                        <Form.Label>Nombre del padre</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="fatherName"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="motherName" className="col-md-4">
-                <Form.Label>Nombre de la madre</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="motherName"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="motherName" className="col-md-4">
+                        <Form.Label>Nombre de la madre</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="motherName"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="godfather" className="col-md-4">
-                <Form.Label>Padrino</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="godfather"
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+                    <Form.Group controlId="godfather" className="col-md-4">
+                        <Form.Label>Padrino</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="godfather"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
-            <Button variant="primary" type="submit" className="col-md-9">
-                Solicitar acta
-            </Button>
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className="col-md-9"
+                    >
+                        Solicitar acta
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <Form.Group controlId="namehusband" className="col-md-4">
+                        <Form.Label>Nombre Esposo</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="namehusband"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="lastnamehusband" className="col-md-4">
+                        <Form.Label>Apellido Esposo</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="lastnamehusband"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="namewife" className="col-md-4">
+                        <Form.Label>Nombre Esposa</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="namewife"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="lastnamewife" className="col-md-4">
+                        <Form.Label>Apellido Esposa</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="lastnamewife"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="marrierdate" className="col-md-4">
+                        <Form.Label>Fecha del matrimonio</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="marrierdate"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="motherwife" className="col-md-4">
+                        <Form.Label>Nombre de la madre del esposo</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="motherwife"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="motherhusband" className="col-md-4">
+                        <Form.Label>Nombre de la madre de la esposa</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="motherhusband"
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className="col-md-9"
+                    >
+                        Solicitar acta
+                    </Button>
+                </>
+            )}
         </Form>
     )
 }

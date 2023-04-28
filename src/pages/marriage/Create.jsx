@@ -99,7 +99,7 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-            <Form.Group controlId="marrierdate" className="col-md-4">
+            <Form.Group controlId="marrierdate" className="col-md-6">
                 <Form.Label>Fecha Matrimonio</Form.Label>
                 <Form.Control
                     type="date"
@@ -109,7 +109,7 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-            <Form.Group controlId="namehusband" className="col-md-4">
+            <Form.Group controlId="namehusband" className="col-md-6">
                 <Form.Label>Nombre de el esposo</Form.Label>
                 <Form.Control
                     type="text"
@@ -119,7 +119,7 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-            <Form.Group controlId="lastnamehusband" className="col-md-2">
+            <Form.Group controlId="lastnamehusband" className="col-md-6">
                 <Form.Label>Apellido Esposo</Form.Label>
                 <Form.Control
                     type="text"
@@ -129,7 +129,7 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-            <Form.Group controlId="fatherhusband" className="col-md-2">
+            <Form.Group controlId="fatherhusband" className="col-md-6">
                 <Form.Label>Nombre del padre(esposo)</Form.Label>
                 <Form.Control
                     type="text"
@@ -251,7 +251,7 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-            <Form.Group controlId="parson" className="col-md-12">
+            <Form.Group controlId="parson" className="col-md-6">
                 <Form.Label>Parroco</Form.Label>
                 <Form.Control
                     type="text"
@@ -266,7 +266,8 @@ export default function marriageCreate() {
             <Form.Group controlId="annotations" className="col-md-12">
                 <Form.Label>Anotaciones</Form.Label>
                 <Form.Control
-                    type="textArea"
+                    as="textArea"
+                    rows={3}
                     name="annotations"
                     onChange={handleChange}
                     required

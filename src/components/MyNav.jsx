@@ -8,7 +8,6 @@ export default function MyNav() {
 
     return (
         <>
-            {console.log({user})}
             <Nav variant="tabs" activeKey="1" onSelect={true}>
                 <Nav.Item>
                     <Nav.Link as={NavLink} to="/">
