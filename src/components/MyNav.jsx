@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom"
-import { Nav, NavDropdown } from "react-bootstrap"
-import { useContext } from "react"
-import { UserContext } from "../context/UserContext"
+import { NavLink } from 'react-router-dom'
+import { Nav, NavDropdown } from 'react-bootstrap'
+import { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 
 export default function MyNav() {
     const { user } = useContext(UserContext)
@@ -25,11 +25,15 @@ export default function MyNav() {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link as={NavLink} to="/profile">
-                        Mi perfil
-                    </Nav.Link>
+                    {user ? (
+                        <Nav.Link as={NavLink} to="/profile">
+                            Mi perfil
+                        </Nav.Link>
+                    ) : (
+                        <></>
+                    )}
                 </Nav.Item>
-                {user?.role == "ADMIN" ? (
+                {user?.role == 'ADMIN' ? (
                     <NavDropdown title="Bautismo">
                         <NavDropdown.Item as={NavLink} to="/baptismal/create">
                             Crear
@@ -42,9 +46,12 @@ export default function MyNav() {
                     <></>
                 )}
 
-                {user?.role == "ADMIN" ? (
+                {user?.role == 'ADMIN' ? (
                     <NavDropdown title="Confirmacion">
-                        <NavDropdown.Item as={NavLink} to="/confirmation/create">
+                        <NavDropdown.Item
+                            as={NavLink}
+                            to="/confirmation/create"
+                        >
                             Crear
                         </NavDropdown.Item>
                         <NavDropdown.Item as={NavLink} to="/confirmation/find">
@@ -53,8 +60,8 @@ export default function MyNav() {
                     </NavDropdown>
                 ) : (
                     <></>
-                )}    
-                {user?.role == "ADMIN" ? (
+                )}
+                {user?.role == 'ADMIN' ? (
                     <NavDropdown title="Matrimonio">
                         <NavDropdown.Item as={NavLink} to="/marriage/create">
                             Crear
@@ -62,13 +69,12 @@ export default function MyNav() {
                         <NavDropdown.Item as={NavLink} to="/marriage/find">
                             Buscar
                         </NavDropdown.Item>
-                        
                     </NavDropdown>
                 ) : (
                     <></>
-                )}  
+                )}
 
-                {user?.role == "USER" || user?.role == "ADMIN" ? (
+                {user?.role == 'USER' || user?.role == 'ADMIN' ? (
                     <NavDropdown title="Solicitud">
                         <NavDropdown.Item
                             as={NavLink}
@@ -76,7 +82,7 @@ export default function MyNav() {
                         >
                             Crear
                         </NavDropdown.Item>
-                        {user?.role == "ADMIN" ? (
+                        {user?.role == 'ADMIN' ? (
                             <NavDropdown.Item
                                 as={NavLink}
                                 to="/request/getRequestsForDay"

@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react"
-import { Form, Button, Accordion } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import ButtonDelete from "../../components/ButtonDelete"
-import ButtonUpdate from "../../components/ButtonUpdate"
-import MarriageUpdate from "./Update"
-import Swal from "sweetalert2"
-
+import { useState, useEffect } from 'react'
+import { Form, Button, Accordion } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import ButtonDelete from '../../components/ButtonDelete'
+import ButtonUpdate from '../../components/ButtonUpdate'
+import MarriageUpdate from './Update'
+import Swal from 'sweetalert2'
 
 export default function marriageFind() {
     const [data, setData] = useState([])
@@ -21,14 +20,14 @@ export default function marriageFind() {
     }, [reload])
 
     const [formData, setFormData] = useState({
-        name: "",
-        lastname: ""
+        name: '',
+        lastname: '',
     })
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -37,23 +36,27 @@ export default function marriageFind() {
         findData()
     }
 
-    
     function findData() {
         connectionApi
-            .post("marriage/getMarriageToNameLastname", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            })
+            .get(
+                `marriage/getMarriageToNameLastname/${formData.name}/${formData.lastname}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                },
+            )
             .then((response) => {
                 if (response.data.success) {
                     setData(response.data.data.marriage)
                 } else {
                     setData([])
                     Swal.fire({
-                        icon: "question",
+                        icon: 'question',
                         title: response.data?.message,
-                        text: response.data?.data?.errors 
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -77,27 +80,31 @@ export default function marriageFind() {
                         className="row justify-content-center g-3 p-4"
                     >
                         <h2>Buscar acta de Matrimonio</h2>
-                        <Form.Group controlId="namehusband" className="col-md-6" >
+                        <Form.Group controlId="name" className="col-md-6">
                             <Form.Label>Nombre Esposo</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="namehusband"
-                                value={formData.namehusband}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId="lastnamehusband" className="col-md-6">
+                        <Form.Group controlId="lastname" className="col-md-6">
                             <Form.Label>Apellido Esposo</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="lastnamehusband"
-                                value={formData.lastnamehusband}
+                                name="lastname"
+                                value={formData.lastname}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="col-md-11">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            className="col-md-11"
+                        >
                             Buscar
                         </Button>
                     </Form>
@@ -112,9 +119,9 @@ export default function marriageFind() {
                                     <Accordion key={i}>
                                         <Accordion.Item eventKey={i}>
                                             <Accordion.Header>
-                                                Nombre:{" "}
+                                                Nombre:{' '}
                                                 {item.namehusband +
-                                                    " " +
+                                                    ' ' +
                                                     item.lastnamehusband}
                                             </Accordion.Header>
                                             <Accordion.Body>
@@ -155,27 +162,21 @@ export default function marriageFind() {
                                                     {item.placebatptismhusband}
                                                 </div>
                                                 <div>
-                                                    <b>
-                                                        Fecha bautismo:{" "}
-                                                    </b>
+                                                    <b>Fecha bautismo: </b>
                                                     {item.datebatptismhusband}
                                                 </div>
                                                 <div>
-                                                    <b>
-                                                        Nombre de la esposa:{" "}
-                                                    </b>
+                                                    <b>Nombre de la esposa: </b>
                                                     {item.namewife}
                                                 </div>
                                                 <div>
                                                     <b>
-                                                        apellido de la esposa:{" "}
+                                                        apellido de la esposa:{' '}
                                                     </b>
                                                     {item.lastnamewife}
                                                 </div>
                                                 <div>
-                                                    <b>
-                                                        Padre de la esposa:{" "}
-                                                    </b>
+                                                    <b>Padre de la esposa: </b>
                                                     {item.fatherwife}
                                                 </div>
                                                 <div>
@@ -208,7 +209,7 @@ export default function marriageFind() {
                                                 </div>
                                                 <ButtonDelete
                                                     url={
-                                                        "marriage/deleteMarriage"
+                                                        'marriage/deleteMarriage'
                                                     }
                                                     book={item.book}
                                                     invoice={item.invoice}
@@ -233,5 +234,4 @@ export default function marriageFind() {
             )}
         </>
     )
-
 }

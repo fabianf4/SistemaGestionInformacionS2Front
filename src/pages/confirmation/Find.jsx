@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import { Form, Button, Accordion } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import ButtonDelete from "../../components/ButtonDelete"
-import ButtonUpdate from "../../components/ButtonUpdate"
-import ConfirmationUpdate from "./Update"
-import Swal from "sweetalert2"
+import { useState, useEffect } from 'react'
+import { Form, Button, Accordion } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import ButtonDelete from '../../components/ButtonDelete'
+import ButtonUpdate from '../../components/ButtonUpdate'
+import ConfirmationUpdate from './Update'
+import Swal from 'sweetalert2'
 
 export default function ConfirmationFind() {
     const [data, setData] = useState([])
@@ -20,14 +20,14 @@ export default function ConfirmationFind() {
     }, [reload])
 
     const [formData, setFormData] = useState({
-        name: "",
-        lastname: ""
+        name: '',
+        lastname: '',
     })
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -38,20 +38,25 @@ export default function ConfirmationFind() {
 
     function findData() {
         connectionApi
-            .post("confirmation/getConfirmToNameLastname", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            })
+            .get(
+                `confirmation/getConfirmToNameLastname/${formData.name}/${formData.lastname}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                },
+            )
             .then((response) => {
                 if (response.data.success) {
                     setData(response.data.data.confirmation)
                 } else {
                     setData([])
                     Swal.fire({
-                        icon: "question",
+                        icon: 'question',
                         title: response.data?.message,
-                        text: response.data?.data?.errors 
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -75,7 +80,7 @@ export default function ConfirmationFind() {
                         className="row justify-content-center g-3 p-4"
                     >
                         <h2>Buscar acta de confirmacion</h2>
-                        <Form.Group controlId="name" className="col-md-6" >
+                        <Form.Group controlId="name" className="col-md-6">
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control
                                 type="text"
@@ -95,7 +100,11 @@ export default function ConfirmationFind() {
                                 required
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="col-md-11">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            className="col-md-11"
+                        >
                             Buscar
                         </Button>
                     </Form>
@@ -110,9 +119,9 @@ export default function ConfirmationFind() {
                                     <Accordion key={i}>
                                         <Accordion.Item eventKey={i}>
                                             <Accordion.Header>
-                                                Nombre:{" "}
+                                                Nombre:{' '}
                                                 {item.name +
-                                                    " " +
+                                                    ' ' +
                                                     item.lastname}
                                             </Accordion.Header>
                                             <Accordion.Body>
@@ -141,7 +150,9 @@ export default function ConfirmationFind() {
                                                     {item.birthdate}
                                                 </div>
                                                 <div>
-                                                    <b>Fecha de Bautismo: </b>
+                                                    <b>
+                                                        Fecha de confirmacion:{' '}
+                                                    </b>
                                                     {item.confirmationDate}
                                                 </div>
                                                 <div>
@@ -152,15 +163,17 @@ export default function ConfirmationFind() {
                                                     <b>Nombre de la madre: </b>
                                                     {item.motherName}
                                                 </div>
-                                               <div>
-                                                    <b>Lugar de bautismo: </b>
+                                                <div>
+                                                    <b>
+                                                        Lugar de confirmacion:{' '}
+                                                    </b>
                                                     {item.placeBaptism}
-                                               </div>
+                                                </div>
                                                 <div>
                                                     <b>Padrino: </b>
                                                     {item.godfather}
                                                 </div>
-                                                
+
                                                 <div>
                                                     <b>Ministro: </b>
                                                     {item.minister}
@@ -175,7 +188,7 @@ export default function ConfirmationFind() {
                                                 </div>
                                                 <ButtonDelete
                                                     url={
-                                                        "confirmation/deleteConfirmation"
+                                                        'confirmation/deleteConfirmation'
                                                     }
                                                     book={item.book}
                                                     invoice={item.invoice}

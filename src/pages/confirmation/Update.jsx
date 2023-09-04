@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react"
-import { Form, Button } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import Swal from "sweetalert2"
+import React, { useState, useEffect } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import Swal from 'sweetalert2'
 
 export default function ConfirmationUpdate({ data, setEdit, setReload }) {
     const [formData, setFormData] = useState({
-        book: "",
-        invoice: "",
-        number: "",
-        name: "",
-        lastname: "",
-        birthdate: "",
-        confirmationDate: "",
-        fatherName: "",
-        motherName: "",
-        placeBaptism:"",
-        godfather:"",
-        minister: "",
-        parson: "",
-        annotations: ""
+        book: '',
+        invoice: '',
+        number: '',
+        name: '',
+        lastname: '',
+        birthdate: '',
+        confirmationDate: '',
+        fatherName: '',
+        motherName: '',
+        placeBaptism: '',
+        godfather: '',
+        minister: '',
+        parson: '',
+        annotations: '',
     })
 
     useEffect(() => {
@@ -33,25 +33,25 @@ export default function ConfirmationUpdate({ data, setEdit, setReload }) {
     const handleSubmit = (event) => {
         event.preventDefault()
         connectionApi
-            .put("confirmation/updateConfirmation", formData, {
+            .put('confirmation/updateConfirmation', formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
             })
             .then((response) => {
                 if (response.data.success) {
                     Swal.fire({
-                        icon: "success",
-                        title: "Acta actualizada",
-                        text: response.data.message
+                        icon: 'success',
+                        title: 'Acta actualizada',
+                        text: response.data.message,
                     })
                     setEdit(false)
                     setReload(true)
                 } else {
                     Swal.fire({
-                        icon: "error",
+                        icon: 'error',
                         title: response.data?.message,
-                        text: response.data?.data?.errors
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -61,7 +61,10 @@ export default function ConfirmationUpdate({ data, setEdit, setReload }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="row justify-content-center g-3 p-4">
+        <Form
+            onSubmit={handleSubmit}
+            className="row justify-content-center g-3 p-4"
+        >
             <h2>Actualizar</h2>
             <Form.Group controlId="book" className="col-md-4">
                 <Form.Label>Libro</Form.Label>
@@ -138,7 +141,7 @@ export default function ConfirmationUpdate({ data, setEdit, setReload }) {
                     type="date"
                     name="confirmationDate"
                     onChange={handleChange}
-                    value={formData.baptismDate}
+                    value={formData.confirmationDate}
                     required
                 />
             </Form.Group>
@@ -171,7 +174,7 @@ export default function ConfirmationUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="placeBaptism"
                     onChange={handleChange}
-                    value={formData.motherName}
+                    value={formData.placeBaptism}
                     required
                 />
             </Form.Group>
@@ -186,7 +189,6 @@ export default function ConfirmationUpdate({ data, setEdit, setReload }) {
                     required
                 />
             </Form.Group>
-
 
             <Form.Group controlId="minister" className="col-md-6">
                 <Form.Label>Ministro</Form.Label>

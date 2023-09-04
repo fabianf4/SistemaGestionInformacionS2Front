@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react"
-import { Form, Button } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import Swal from "sweetalert2"
+import React, { useState, useEffect } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import Swal from 'sweetalert2'
 
 export default function BaptismalUpdate({ data, setEdit, setReload }) {
     const [formData, setFormData] = useState({
-        book: "",
-        invoice: "",
-        number: "",
-        name: "",
-        lastname: "",
-        birthdate: "",
-        baptismDate: "",
-        fatherName: "",
-        motherName: "",
-        maternalGrandfather: "",
-        maternalGrandmother: "",
-        paternalGrandfather: "",
-        paternalGrandmother: "",
-        godfather: "",
-        godmother: "",
-        minister: "",
-        parson: "",
-        annotations: ""
+        book: '',
+        invoice: '',
+        number: '',
+        name: '',
+        lastname: '',
+        birthdate: '',
+        baptismDate: '',
+        fatherName: '',
+        motherName: '',
+        maternalGrandfather: '',
+        maternalGrandmother: '',
+        paternalGrandfather: '',
+        paternalGrandmother: '',
+        godfather: '',
+        godmother: '',
+        minister: '',
+        parson: '',
+        annotations: '',
     })
 
     useEffect(() => {
@@ -37,25 +37,26 @@ export default function BaptismalUpdate({ data, setEdit, setReload }) {
     const handleSubmit = (event) => {
         event.preventDefault()
         connectionApi
-            .put("baptism/updateBaptism", formData, {
+            .put('baptism/updateBaptism', formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
             })
             .then((response) => {
+                console.log(response.data)
                 if (response.data.success) {
                     Swal.fire({
-                        icon: "success",
-                        title: "Acta actualizada",
-                        text: response.data.message
+                        icon: 'success',
+                        title: 'Acta actualizada',
+                        text: response.data.message,
                     })
                     setEdit(false)
                     setReload(true)
                 } else {
                     Swal.fire({
-                        icon: "error",
+                        icon: 'error',
                         title: response.data?.message,
-                        text: response.data?.data?.errors
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -65,7 +66,10 @@ export default function BaptismalUpdate({ data, setEdit, setReload }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="row justify-content-center g-3 p-4">
+        <Form
+            onSubmit={handleSubmit}
+            className="row justify-content-center g-3 p-4"
+        >
             <h2>Actualizar</h2>
             <Form.Group controlId="book" className="col-md-4">
                 <Form.Label>Libro</Form.Label>

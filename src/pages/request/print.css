@@ -116,18 +116,17 @@
         display: none !important;
     }
 
-    .cer{
+    .cer {
         width: 700px;
         border: none;
     }
 
-    .cer_parroco{
-        margin: 100px auto;
+    .cer_parroco {
+        margin: 70px auto;
     }
 
-    .container{
+    .container {
         max-width: 800px !important;
         margin: 0 auto !important;
     }
-   
 }

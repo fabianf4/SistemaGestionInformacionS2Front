@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import { Form, Button, Accordion } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import ButtonDelete from "../../components/ButtonDelete"
-import ButtonUpdate from "../../components/ButtonUpdate"
-import BaptismalUpdate from "./Update"
-import Swal from "sweetalert2"
+import { useState, useEffect } from 'react'
+import { Form, Button, Accordion } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import ButtonDelete from '../../components/ButtonDelete'
+import ButtonUpdate from '../../components/ButtonUpdate'
+import BaptismalUpdate from './Update'
+import Swal from 'sweetalert2'
 
 export default function BautismalFind() {
     const [data, setData] = useState([])
@@ -20,14 +20,14 @@ export default function BautismalFind() {
     }, [reload])
 
     const [formData, setFormData] = useState({
-        name: "",
-        lastname: ""
+        name: '',
+        lastname: '',
     })
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -38,20 +38,25 @@ export default function BautismalFind() {
 
     function findData() {
         connectionApi
-            .post("baptism/getBaptismToNameLastname", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            })
+            .get(
+                `baptism/getBaptismToNameLastname/${formData.name}/${formData.lastname}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                },
+            )
             .then((response) => {
                 if (response.data.success) {
                     setData(response.data.data.baptism)
                 } else {
                     setData([])
                     Swal.fire({
-                        icon: "question",
+                        icon: 'question',
                         title: response.data?.message,
-                        text: response.data?.data?.errors 
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -75,7 +80,7 @@ export default function BautismalFind() {
                         className="row justify-content-center g-3 p-4"
                     >
                         <h2>Buscar acta de bautismo</h2>
-                        <Form.Group controlId="name" className="col-md-6" >
+                        <Form.Group controlId="name" className="col-md-6">
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control
                                 type="text"
@@ -95,7 +100,11 @@ export default function BautismalFind() {
                                 required
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="col-md-11">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            className="col-md-11"
+                        >
                             Buscar
                         </Button>
                     </Form>
@@ -110,9 +119,9 @@ export default function BautismalFind() {
                                     <Accordion key={i}>
                                         <Accordion.Item eventKey={i}>
                                             <Accordion.Header>
-                                                Nombre:{" "}
+                                                Nombre:{' '}
                                                 {item.name +
-                                                    " " +
+                                                    ' ' +
                                                     item.lastname}
                                             </Accordion.Header>
                                             <Accordion.Body>
@@ -155,28 +164,28 @@ export default function BautismalFind() {
                                                 <div>
                                                     <b>
                                                         Nombre del abuelo
-                                                        paterno:{" "}
+                                                        paterno:{' '}
                                                     </b>
                                                     {item.paternalGrandfather}
                                                 </div>
                                                 <div>
                                                     <b>
                                                         Nombre de la abuela
-                                                        paterna:{" "}
+                                                        paterna:{' '}
                                                     </b>
                                                     {item.paternalGrandmother}
                                                 </div>
                                                 <div>
                                                     <b>
                                                         Nombre del abuelo
-                                                        materno:{" "}
+                                                        materno:{' '}
                                                     </b>
                                                     {item.maternalGrandfather}
                                                 </div>
                                                 <div>
                                                     <b>
                                                         Nombre de la abuela
-                                                        materna:{" "}
+                                                        materna:{' '}
                                                     </b>
                                                     {item.maternalGrandmother}
                                                 </div>
@@ -202,7 +211,7 @@ export default function BautismalFind() {
                                                 </div>
                                                 <ButtonDelete
                                                     url={
-                                                        "baptism/deleteBaptism"
+                                                        'baptism/deleteBaptism'
                                                     }
                                                     book={item.book}
                                                     invoice={item.invoice}

@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react"
-import { Form, Button } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import Swal from "sweetalert2"
+import React, { useState, useEffect } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import Swal from 'sweetalert2'
 
 export default function MarriageUpdate({ data, setEdit, setReload }) {
     const [formData, setFormData] = useState({
-        book:"",
-        invoice:"",
-        number:"",
-        marrierdate:"",
-        namehusband:"",
-        lastnamehusband:"",
-        fatherhusband:"",
-        motherhusband:"",
-        placebatptismhusband:"",
-        datebatptismhusband:"",
-        namewife:"",
-        lastnamewife:"",
-        fatherwife:"",
-        motherwife:"",
-        placebatptismwife:"",
-        datebatptismwife:"",
-        namewitness:"",
-        minister:"",
-        parson:"",
-        annotations:""
+        book: '',
+        invoice: '',
+        number: '',
+        marrierdate: '',
+        namehusband: '',
+        lastnamehusband: '',
+        fatherhusband: '',
+        motherhusband: '',
+        placebatptismhusband: '',
+        datebatptismhusband: '',
+        namewife: '',
+        lastnamewife: '',
+        fatherwife: '',
+        motherwife: '',
+        placebatptismwife: '',
+        datebatptismwife: '',
+        namewitness: '',
+        minister: '',
+        parson: '',
+        annotations: '',
     })
 
     useEffect(() => {
+        console.log(data)
         setFormData((prevState) => Object.assign({}, prevState, data))
     }, [])
 
@@ -39,25 +40,25 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
     const handleSubmit = (event) => {
         event.preventDefault()
         connectionApi
-            .put("marriage/updateMarriage", formData, {
+            .put('marriage/updateMarriage', formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
             })
             .then((response) => {
                 if (response.data.success) {
                     Swal.fire({
-                        icon: "success",
-                        title: "Acta actualizada",
-                        text: response.data.message
+                        icon: 'success',
+                        title: 'Acta actualizada',
+                        text: response.data.message,
                     })
                     setEdit(false)
                     setReload(true)
                 } else {
                     Swal.fire({
-                        icon: "error",
+                        icon: 'error',
                         title: response.data?.message,
-                        text: response.data?.data?.errors
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -66,9 +67,11 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
             })
     }
 
-    
     return (
-        <Form onSubmit={handleSubmit} className="row justify-content-center g-3 p-4">
+        <Form
+            onSubmit={handleSubmit}
+            className="row justify-content-center g-3 p-4"
+        >
             <h2>Actualizar</h2>
             <Form.Group controlId="book" className="col-md-4">
                 <Form.Label>Libro</Form.Label>
@@ -76,6 +79,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="number"
                     name="book"
                     onChange={handleChange}
+                    value={formData.book}
                     required
                     disabled
                 />
@@ -87,6 +91,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="number"
                     name="invoice"
                     onChange={handleChange}
+                    value={formData.invoice}
                     required
                     disabled
                 />
@@ -98,47 +103,52 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="number"
                     name="number"
                     onChange={handleChange}
+                    value={formData.number}
                     required
                     disabled
                 />
             </Form.Group>
 
-            <Form.Group controlId="marrierdate" className="col-md-4">
+            <Form.Group controlId="marrierdate" className="col-md-6">
                 <Form.Label>Fecha Matrimonio</Form.Label>
                 <Form.Control
                     type="date"
                     name="marrierdate"
                     onChange={handleChange}
+                    value={formData.marrierdate}
                     required
                 />
             </Form.Group>
 
-            <Form.Group controlId="namehusband" className="col-md-4">
+            <Form.Group controlId="namehusband" className="col-md-6">
                 <Form.Label>Nombre de el esposo</Form.Label>
                 <Form.Control
                     type="text"
                     name="namehusband"
                     onChange={handleChange}
+                    value={formData.namehusband}
                     required
                 />
             </Form.Group>
 
-            <Form.Group controlId="lastnamehusband" className="col-md-2">
+            <Form.Group controlId="lastnamehusband" className="col-md-6">
                 <Form.Label>Apellido Esposo</Form.Label>
                 <Form.Control
                     type="text"
                     name="lastnamehusband"
                     onChange={handleChange}
+                    value={formData.lastnamehusband}
                     required
                 />
             </Form.Group>
 
-            <Form.Group controlId="fatherhusband" className="col-md-2">
+            <Form.Group controlId="fatherhusband" className="col-md-6">
                 <Form.Label>Nombre del padre(esposo)</Form.Label>
                 <Form.Control
                     type="text"
                     name="fatherhusband"
                     onChange={handleChange}
+                    value={formData.fatherhusband}
                     required
                 />
             </Form.Group>
@@ -149,6 +159,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="motherhusband"
                     onChange={handleChange}
+                    value={formData.motherhusband}
                     required
                 />
             </Form.Group>
@@ -159,6 +170,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="placebatptismhusband"
                     onChange={handleChange}
+                    value={formData.placebatptismhusband}
                     required
                 />
             </Form.Group>
@@ -169,6 +181,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="date"
                     name="datebatptismhusband"
                     onChange={handleChange}
+                    value={formData.datebatptismhusband}
                     required
                 />
             </Form.Group>
@@ -179,6 +192,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="namewife"
                     onChange={handleChange}
+                    value={formData.namewife}
                     required
                 />
             </Form.Group>
@@ -189,10 +203,10 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="lastnamewife"
                     onChange={handleChange}
+                    value={formData.lastnamewife}
                     required
                 />
             </Form.Group>
-
 
             <Form.Group controlId="fatherwife" className="col-md-6">
                 <Form.Label>Padre(esposa)</Form.Label>
@@ -200,6 +214,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="fatherwife"
                     onChange={handleChange}
+                    value={formData.fatherwife}
                     required
                 />
             </Form.Group>
@@ -210,6 +225,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="motherwife"
                     onChange={handleChange}
+                    value={formData.motherwife}
                     required
                 />
             </Form.Group>
@@ -220,6 +236,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="placebatptismwife"
                     onChange={handleChange}
+                    value={formData.placebatptismwife}
                     required
                 />
             </Form.Group>
@@ -230,6 +247,7 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="date"
                     name="datebatptismwife"
                     onChange={handleChange}
+                    value={formData.datebatptismwife}
                     required
                 />
             </Form.Group>
@@ -240,10 +258,10 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="namewitness"
                     onChange={handleChange}
+                    value={formData.namewitness}
                     required
                 />
             </Form.Group>
-
 
             <Form.Group controlId="minister" className="col-md-6">
                 <Form.Label>Ministro</Form.Label>
@@ -251,28 +269,29 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
                     type="text"
                     name="minister"
                     onChange={handleChange}
+                    value={formData.minister}
                     required
                 />
             </Form.Group>
 
-            <Form.Group controlId="parson" className="col-md-12">
+            <Form.Group controlId="parson" className="col-md-6">
                 <Form.Label>Parroco</Form.Label>
                 <Form.Control
                     type="text"
                     name="parson"
                     onChange={handleChange}
+                    value={formData.parson}
                     required
                 />
             </Form.Group>
 
-
-            
             <Form.Group controlId="annotations" className="col-md-12">
                 <Form.Label>Anotaciones</Form.Label>
                 <Form.Control
-                    type="textArea"
+                    as="textarea"
                     name="annotations"
                     onChange={handleChange}
+                    value={formData.annotations}
                     required
                 />
             </Form.Group>
@@ -282,5 +301,4 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
             </Button>
         </Form>
     )
-
 }

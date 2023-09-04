@@ -1,35 +1,33 @@
-import React, { useState } from "react"
-import { Form, Button } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import { useNavigate } from "react-router-dom"
-import Swal from "sweetalert2"
-
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export default function marriageCreate() {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        
-        book:"",
-        invoice:"",
-        number:"",
-        marrierdate:"",
-        namehusband:"",
-        lastnamehusband:"",
-        fatherhusband:"",
-        motherhusband:"",
-        placebatptismhusband:"",
-        datebatptismhusband:"",
-        namewife:"",
-        lastnamewife:"",
-        fatherwife:"",
-        motherwife:"",
-        placebatptismwife:"",
-        datebatptismwife:"",
-        namewitness:"",
-        minister:"",
-        parson:"",
-        annotations:""
+        book: '',
+        invoice: '',
+        number: '',
+        marrierdate: '',
+        namehusband: '',
+        lastnamehusband: '',
+        fatherhusband: '',
+        motherhusband: '',
+        placebatptismhusband: '',
+        datebatptismhusband: '',
+        namewife: '',
+        lastnamewife: '',
+        fatherwife: '',
+        motherwife: '',
+        placebatptismwife: '',
+        datebatptismwife: '',
+        namewitness: '',
+        minister: '',
+        parson: '',
+        annotations: '',
     })
 
     const handleChange = (event) => {
@@ -37,28 +35,27 @@ export default function marriageCreate() {
         setFormData({ ...formData, [name]: value })
     }
 
-    
     const handleSubmit = (event) => {
         event.preventDefault()
         connectionApi
-            .post("marriage/addMarriage", formData, {
+            .post('marriage/addMarriage', formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
             })
             .then((response) => {
                 if (response.data.success) {
                     Swal.fire({
-                        icon: "success",
-                        title: "Acta creada",
-                        text: response.data.message
+                        icon: 'success',
+                        title: 'Acta creada',
+                        text: response.data.message,
                     })
-                    navigate("/marriage/find")
+                    navigate('/marriage/find')
                 } else {
                     Swal.fire({
-                        icon: "error",
+                        icon: 'error',
                         title: response.data?.message,
-                        text: response.data?.data?.errors
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -68,7 +65,10 @@ export default function marriageCreate() {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="row justify-content-center g-3 p-4">
+        <Form
+            onSubmit={handleSubmit}
+            className="row justify-content-center g-3 p-4"
+        >
             <Form.Group controlId="book" className="col-md-4">
                 <Form.Label>Libro</Form.Label>
                 <Form.Control
@@ -189,7 +189,6 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-
             <Form.Group controlId="fatherwife" className="col-md-6">
                 <Form.Label>Padre(esposa)</Form.Label>
                 <Form.Control
@@ -240,7 +239,6 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-
             <Form.Group controlId="minister" className="col-md-6">
                 <Form.Label>Ministro</Form.Label>
                 <Form.Control
@@ -261,12 +259,10 @@ export default function marriageCreate() {
                 />
             </Form.Group>
 
-
-            
             <Form.Group controlId="annotations" className="col-md-12">
                 <Form.Label>Anotaciones</Form.Label>
                 <Form.Control
-                    as="textArea"
+                    as="textarea"
                     rows={3}
                     name="annotations"
                     onChange={handleChange}

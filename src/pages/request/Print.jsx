@@ -1,15 +1,14 @@
-import { Button, Form } from "react-bootstrap"
-import escudoDiocesis from "../../images/escudoDiocesis.jpeg"
-import { useState, useEffect } from "react"
-import "./print.css"
+import { Button, Form } from 'react-bootstrap'
+import escudoDiocesis from '../../images/escudoDiocesis.jpeg'
+import { useState, useEffect } from 'react'
+import './print.css'
 
 export default function RequestPrint({ certificate, type, windowPrint }) {
-
-    const [date, setDate] = useState("")
-    const [parroco, setParroco] = useState("")
+    const [date, setDate] = useState('')
+    const [parroco, setParroco] = useState('')
 
     useEffect(() => {
-        setDate(new Date().toISOString().split("T")[0])
+        setDate(new Date().toISOString().split('T')[0])
     }, [])
 
     function edad(birthdate) {
@@ -18,7 +17,7 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
         let fechaNacimiento = new Date(birthdate)
         // Cálculo de la edad
         let edad = Math.floor(
-            (fechaActual - fechaNacimiento) / (365.25 * 24 * 60 * 60 * 1000)
+            (fechaActual - fechaNacimiento) / (365.25 * 24 * 60 * 60 * 1000),
         )
         return edad
     }
@@ -58,18 +57,18 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                     </div>
                 </div>
 
-                {type == "CONFIRMACION" ? (
+                {type == 'CONFIRMACION' ? (
                     <>
                         <div className="cer_body">
                             <span>Nombres y apellidos: </span>
-                            {certificate.name + " " + certificate.lastname}{" "}
+                            {certificate.name + ' ' + certificate.lastname}{' '}
                             <br />
-                            <span>Edad:{}</span> {edad(certificate.birthdate)}{" "}
+                            <span>Edad:{}</span> {edad(certificate.birthdate)}{' '}
                             <br />
-                            <span>Nombre de los padres:</span>{" "}
+                            <span>Nombre de los padres:</span>{' '}
                             {certificate.fatherName +
-                                " y " +
-                                certificate.motherName}{" "}
+                                ' y ' +
+                                certificate.motherName}{' '}
                             <br />
                             <span>Bautizado en: </span>
                             {certificate.placeBaptism} <br />
@@ -88,35 +87,35 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                     <></>
                 )}
 
-                {type == "BAUTISMO" ? (
+                {type == 'BAUTISMO' ? (
                     <>
                         <div className="cer_body">
                             <span>Nombres y apellidos: </span>
-                            {certificate.name + " " + certificate.lastname}{" "}
+                            {certificate.name + ' ' + certificate.lastname}{' '}
                             <br />
-                            <span>Fecha de nacimiento:</span>{" "}
+                            <span>Fecha de nacimiento:</span>{' '}
                             {certificate.birthdate} <br />
                             <span>Fecha de bautismo: </span>
                             {certificate.baptismDate} <br />
-                            <span>Nombre de los padres:</span>{" "}
+                            <span>Nombre de los padres:</span>{' '}
                             {certificate.fatherName +
-                                " y " +
-                                certificate.motherName}{" "}
+                                ' y ' +
+                                certificate.motherName}{' '}
                             <br />
-                            <span>Abuelos paternos:</span>{" "}
+                            <span>Abuelos paternos:</span>{' '}
                             {certificate.paternalGrandfather +
-                                " y " +
-                                certificate.paternalGrandmother}{" "}
+                                ' y ' +
+                                certificate.paternalGrandmother}{' '}
                             <br />
-                            <span>Abuelos maternos:</span>{" "}
+                            <span>Abuelos maternos:</span>{' '}
                             {certificate.maternalGrandfather +
-                                " y " +
-                                certificate.maternalGrandmother}{" "}
+                                ' y ' +
+                                certificate.maternalGrandmother}{' '}
                             <br />
-                            <span>Padrinos:</span>{" "}
+                            <span>Padrinos:</span>{' '}
                             {certificate.godfather +
-                                " y " +
-                                certificate.godmother}{" "}
+                                ' y ' +
+                                certificate.godmother}{' '}
                             <br />
                             <span>Ministro: </span>
                             {certificate.minister} <br />
@@ -130,13 +129,15 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                     <></>
                 )}
 
-                {type == "MATRIMONIO" ? (
+                {type == 'MATRIMONIO' ? (
                     <>
                         <div className="cer_body">
                             <span>Fecha del matrimonio: </span>
                             {certificate.marrierdate} <br />
                             <span>Nombres y apellidos del esposo: </span>
-                            {certificate.namehusband + " " + certificate.lastnamehusband}{" "}
+                            {certificate.namehusband +
+                                ' ' +
+                                certificate.lastnamehusband}{' '}
                             <br />
                             <span>Padre del esposo: </span>
                             {certificate.fatherhusband} <br />
@@ -147,9 +148,11 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                             <span>Fecha de bautismo del esposo: </span>
                             {certificate.datebatptismhusband}
                             <br />
-
                             <span>Nombres y apellidos de la esposa: </span>
-                            {certificate.motherwife + " " +certificate.lastnamewife} <br />
+                            {certificate.motherwife +
+                                ' ' +
+                                certificate.lastnamewife}{' '}
+                            <br />
                             <span>Padre de la esposa: </span>
                             {certificate.fatherwife} <br />
                             <span>Madre de la esposa: </span>
@@ -172,8 +175,8 @@ export default function RequestPrint({ certificate, type, windowPrint }) {
                 )}
 
                 <div className="cer_date">
-                    Expedida en Sogamoso, el dia {date.split("-")[2]} del mes{" "}
-                    {date.split("-")[1]} de {date.split("-")[0]} <br />
+                    Expedida en Sogamoso, el dia {date.split('-')[2]} del mes{' '}
+                    {date.split('-')[1]} de {date.split('-')[0]} <br />
                 </div>
 
                 <Form.Control

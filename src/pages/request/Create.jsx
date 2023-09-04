@@ -1,27 +1,27 @@
-import React, { useState } from "react"
-import { Form, Button } from "react-bootstrap"
-import connectionApi from "../../configuration/axiosConfiguration"
-import { useNavigate } from "react-router-dom"
-import Swal from "sweetalert2"
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import connectionApi from '../../configuration/axiosConfiguration'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export default function RequestCreate() {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        type: "",
-        name: "",
-        lastname: "",
-        birthdate: "",
-        fatherName: "",
-        motherName: "",
-        godfather: "",
-        namehusband: "",
-        lastnamehusband: "",
-        namewife: "",
-        lastnamewife: "",
-        marrierdate: "",
-        motherwife: "",
-        motherhusband: ""
+        type: '',
+        name: '',
+        lastname: '',
+        birthdate: '',
+        fatherName: '',
+        motherName: '',
+        godfather: '',
+        namehusband: '',
+        lastnamehusband: '',
+        namewife: '',
+        lastnamewife: '',
+        marrierdate: '',
+        motherwife: '',
+        motherhusband: '',
     })
 
     const handleChange = (event) => {
@@ -31,25 +31,37 @@ export default function RequestCreate() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        let url = '/request'
+
+        if (formData.type == 'CONFIRMACION') {
+            url += '/createRequest/confirmation'
+        } else if (formData.type == 'BAUTISMO') {
+            url += '/createRequest/baptism'
+        } else if (formData.type == 'MATRIMONIO') {
+            url += '/createRequest/marriage'
+        }
+
+        console.log(formData)
         connectionApi
-            .post("/request/createRequest", formData, {
+            .post(url, formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
             })
             .then((response) => {
                 if (response.data.success) {
                     Swal.fire({
-                        icon: "success",
-                        title: "Solicitud creada",
-                        text: response.data.message
+                        icon: 'success',
+                        title: 'Solicitud creada',
+                        text: response.data.message,
                     })
-                    navigate("/profile")
+                    navigate('/profile')
                 } else {
                     Swal.fire({
-                        icon: "error",
+                        icon: 'error',
                         title: response.data?.message,
-                        text: response.data?.data?.errors
+                        text: response.data?.data?.errors,
                     })
                 }
             })
@@ -67,13 +79,13 @@ export default function RequestCreate() {
                 <Form.Label>Tipo de acta</Form.Label>
                 <Form.Select name="type" onChange={handleChange} required>
                     <option value="">Seleccione una opción</option>
-                    <option value="CONFIRMACION">Confirmacion</option>
                     <option value="BAUTISMO">Bautismo</option>
+                    <option value="CONFIRMACION">Confirmacion</option>
                     <option value="MATRIMONIO">Matrimonio</option>
                 </Form.Select>
             </Form.Group>
 
-            {formData.type != "MATRIMONIO" ? (
+            {formData.type != 'MATRIMONIO' ? (
                 <>
                     <Form.Group controlId="name" className="col-md-4">
                         <Form.Label>Nombre</Form.Label>
@@ -155,7 +167,10 @@ export default function RequestCreate() {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="lastnamehusband" className="col-md-4">
+                    <Form.Group
+                        controlId="lastnamehusband"
+                        className="col-md-4"
+                    >
                         <Form.Label>Apellido Esposo</Form.Label>
                         <Form.Control
                             type="text"
