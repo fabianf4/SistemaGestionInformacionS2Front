@@ -42,7 +42,6 @@ export default function RequestCreate() {
             url += '/createRequest/marriage'
         }
 
-        console.log(formData)
         connectionApi
             .post(url, formData, {
                 headers: {

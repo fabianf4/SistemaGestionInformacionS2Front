@@ -43,7 +43,6 @@ export default function BaptismalUpdate({ data, setEdit, setReload }) {
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.data.success) {
                     Swal.fire({
                         icon: 'success',

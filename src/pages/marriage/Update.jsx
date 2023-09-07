@@ -28,7 +28,6 @@ export default function MarriageUpdate({ data, setEdit, setReload }) {
     })
 
     useEffect(() => {
-        console.log(data)
         setFormData((prevState) => Object.assign({}, prevState, data))
     }, [])
 

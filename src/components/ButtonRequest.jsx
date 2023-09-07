@@ -1,13 +1,19 @@
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import connectionApi from '../configuration/axiosConfiguration'
 import Swal from 'sweetalert2'
 
-export default function ButtonDelete({ id, update }) {
+export default function ButtonRequest({
+    update,
+    id,
+    description,
+    setDescription,
+}) {
     const handleClick = () => {
         connectionApi
-            .put(
-                '/event/cancelRequest',
-                { id },
+            .post(
+                '/event/requestEvent',
+                { id, description },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -18,15 +24,15 @@ export default function ButtonDelete({ id, update }) {
             )
             .then((response) => {
                 if (response.data.success) {
-                    update(true)
                     Swal.fire({
                         icon: 'success',
-                        title: 'Solicitud cancelada',
-                        text: response.data.message,
+                        title: response.data?.message,
                     })
+                    setDescription('')
+                    update(true)
                 } else {
                     Swal.fire({
-                        icon: 'error',
+                        icon: 'question',
                         title: response.data?.message,
                         text: response.data?.data?.errors,
                     })
@@ -38,8 +44,8 @@ export default function ButtonDelete({ id, update }) {
     }
 
     return (
-        <Button variant="danger" onClick={handleClick}>
-            Cancelar
+        <Button variant="primary" onClick={handleClick}>
+            Solicitar
         </Button>
     )
 }

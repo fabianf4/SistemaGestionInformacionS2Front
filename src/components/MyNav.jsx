@@ -96,6 +96,26 @@ export default function MyNav() {
                 ) : (
                     <></>
                 )}
+                <NavDropdown title="Eventos">
+                    <NavDropdown.Item as={NavLink} to="/event/findForDate">
+                        Buscar
+                    </NavDropdown.Item>
+                    {user?.role == 'ADMIN' ? (
+                        <>
+                            <NavDropdown.Item as={NavLink} to="/event/create">
+                                Crear
+                            </NavDropdown.Item>
+                            <NavDropdown.Item
+                                as={NavLink}
+                                to="/event/findForDateUsers"
+                            >
+                                Buscar con usuarios registrados
+                            </NavDropdown.Item>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </NavDropdown>
             </Nav>
         </>
     )
