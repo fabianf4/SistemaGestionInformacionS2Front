@@ -63,6 +63,13 @@ export default function BaptismalCreate() {
     }
 
     return (
+        <>
+
+       <div class= "card" >
+       <div class="card-header">
+            <h3>Crear acta de bautismo</h3>
+        </div>
+        <div class = "card-body">
         <Form onSubmit={handleSubmit} className="row justify-content-center g-3 p-4">
             <Form.Group controlId="book" className="col-md-4">
                 <Form.Label>Libro</Form.Label>
@@ -248,5 +255,8 @@ export default function BaptismalCreate() {
                 Crear
             </Button>
         </Form>
+        </div>
+    </div>    
+    </>
     )
 }

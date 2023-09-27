@@ -1,34 +1,39 @@
-import { Button } from 'react-bootstrap'
-import connectionApi from '../configuration/axiosConfiguration'
-import Swal from 'sweetalert2'
+import { Button } from "react-bootstrap"
+import connectionApi from "../configuration/axiosConfiguration"
+import Swal from "sweetalert2"
 
-export default function ButtonDelete({ id, update }) {
+export default function ButtonDelete({
+    url,
+    book,
+    invoice,
+    number,
+    setReload
+}) {
     const handleClick = () => {
         connectionApi
-            .put(
-                '/event/cancelRequest',
-                { id },
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            'token',
-                        )}`,
-                    },
+            .delete(url, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
-            )
+                data: {
+                    book,
+                    invoice,
+                    number
+                }
+            })
             .then((response) => {
                 if (response.data.success) {
-                    update(true)
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Solicitud cancelada',
-                        text: response.data.message,
+                        icon: "success",
+                        title: "Acta eliminada",
+                        text: response.data.message
                     })
+                    setReload(true)
                 } else {
                     Swal.fire({
-                        icon: 'error',
+                        icon: "error",
                         title: response.data?.message,
-                        text: response.data?.data?.errors,
+                        text: response.data?.data?.errors
                     })
                 }
             })
@@ -39,7 +44,7 @@ export default function ButtonDelete({ id, update }) {
 
     return (
         <Button variant="danger" onClick={handleClick}>
-            Cancelar
+            Eliminar
         </Button>
     )
 }

@@ -21,17 +21,28 @@ export default function Profile() {
 
     return (
         <>
-            <h1>Perfil</h1>
-            <h5>Nombre(s):</h5>
-            {user?.name}
-            <h5>Apellido(s):</h5>
-            {user?.lastname}
-            <h5>Documento:</h5>
-            {user?.document}
-            <h5>Correo:</h5>
-            {user?.email}
-            <h5>Contraseña:</h5>
-            {user?.password ? "Si" : "No"}
-        </>
+         <div className="row justify-content-center align-items-center">
+  <div className="col-md-3 text-center"> 
+    <img
+      src="./src/images/usuario.png"
+      alt="Imagen"
+      className="img-fluid rounded-circle img-thumbnail mb-3"
+    />
+    <div className="card">
+      <div className="card-header">
+        <b>Perfil</b>
+      </div>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item"><b>Nombre(s):</b> {user?.name}</li>
+        <li className="list-group-item"><b>Apellido(s):</b>  {user?.lastname}</li>
+        <li className="list-group-item"><b>Documento:</b> {user?.document}</li>
+        <li className="list-group-item"><b>Correo:</b>  {user?.email}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  
+      </>
     )
 }

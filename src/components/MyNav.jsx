@@ -96,6 +96,7 @@ export default function MyNav() {
                 ) : (
                     <></>
                 )}
+                {user?.role == 'USER' || user?.role == 'ADMIN' ? (
                 <NavDropdown title="Eventos">
                     <NavDropdown.Item as={NavLink} to="/event/findForDate">
                         Buscar
@@ -116,6 +117,9 @@ export default function MyNav() {
                         <></>
                     )}
                 </NavDropdown>
+                  ) : (
+                    <></>
+                )}
             </Nav>
         </>
     )

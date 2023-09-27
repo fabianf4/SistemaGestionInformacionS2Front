@@ -58,12 +58,14 @@ export default function Login() {
 
     return (
         <>
+        <div class="row justify-content-center align-items-center p-4 ">
+        
+        <div class= "col-md-6 border rounded ml-3" >
             <Form
                 onSubmit={handleSubmit}
-                className="row justify-content-center g-3 p-4 d-flex justify-content-center"
             >
                 <h2>Autenticarse</h2>
-                <Form.Group controlId="email" className="col-md-6">
+                <Form.Group controlId="email" className="col-md-11">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
                         type="email"
@@ -73,7 +75,7 @@ export default function Login() {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="password" className="col-md-6">
+                <Form.Group controlId="password" className="col-md-11">
                     <Form.Label>Contraseña:</Form.Label>
                     <Form.Control
                         type="password"
@@ -82,9 +84,23 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                 <Form.Text className="text-muted">
+                    Tu contraseña debe contener al menos 8 caracteres.
+                </Form.Text>    
                 </Form.Group>
-                <Button type="submit" className="col-md-3">Iniciar sesion</Button>
+               
+                
+                <Button type="submit" className="col-md-3 mt-3 mb-3">Iniciar sesion</Button>
             </Form>
+    </div>
+        <div className="col-md-3">
+          <img
+            src="./src/images/DN.jpeg"
+            alt="Imagen"
+            className="img-fluid rounded-circle img-thumbnail"
+          />
+        </div>
+    </div> 
         </>
     )
 }
