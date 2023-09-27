@@ -33,46 +33,40 @@ export default function MyNav() {
                         <></>
                     )}
                 </Nav.Item>
-                {user?.role == 'ADMIN' ? (
-                    <NavDropdown title="Bautismo">
-                        <NavDropdown.Item as={NavLink} to="/baptismal/create">
-                            Crear
-                        </NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/baptismal/find">
-                            Buscar
-                        </NavDropdown.Item>
-                    </NavDropdown>
-                ) : (
-                    <></>
-                )}
+ {user?.role === 'ADMIN' && (
+<NavDropdown title="Actas" id="solicitudes-dropdown">
+  
+    <>
+      <NavDropdown title="Bautismo" drop="end">
+        <NavDropdown.Item as={NavLink} to="/baptismal/create">
+          Crear Acta
+        </NavDropdown.Item>
+        <NavDropdown.Item as={NavLink} to="/baptismal/find">
+          Buscar Acta
+        </NavDropdown.Item>
+      </NavDropdown>
+      
+      <NavDropdown title="Confirmación" drop="end">
+        <NavDropdown.Item as={NavLink} to="/confirmation/create">
+          Crear Acta
+        </NavDropdown.Item>
+        <NavDropdown.Item as={NavLink} to="/confirmation/find">
+          Buscar Acta
+        </NavDropdown.Item>
+      </NavDropdown>
+      
+      <NavDropdown title="Matrimonio" drop="end">
+        <NavDropdown.Item as={NavLink} to="/marriage/create">
+          Crear Acta
+        </NavDropdown.Item>
+        <NavDropdown.Item as={NavLink} to="/marriage/find">
+          Buscar Acta
+        </NavDropdown.Item>
+      </NavDropdown>
+    </>
 
-                {user?.role == 'ADMIN' ? (
-                    <NavDropdown title="Confirmacion">
-                        <NavDropdown.Item
-                            as={NavLink}
-                            to="/confirmation/create"
-                        >
-                            Crear
-                        </NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/confirmation/find">
-                            Buscar
-                        </NavDropdown.Item>
-                    </NavDropdown>
-                ) : (
-                    <></>
-                )}
-                {user?.role == 'ADMIN' ? (
-                    <NavDropdown title="Matrimonio">
-                        <NavDropdown.Item as={NavLink} to="/marriage/create">
-                            Crear
-                        </NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/marriage/find">
-                            Buscar
-                        </NavDropdown.Item>
-                    </NavDropdown>
-                ) : (
-                    <></>
-                )}
+</NavDropdown>
+  )}
 
                 {user?.role == 'USER' || user?.role == 'ADMIN' ? (
                     <NavDropdown title="Solicitud">
